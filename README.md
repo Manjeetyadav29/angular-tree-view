@@ -201,27 +201,10 @@ Modify the CSS files in the component directories:
 - **Observable Streams** - Reactive data flow
 - **Immutability** - State updates create new references
 
-## 🤝 Submission
-
-### Git Repository
-
-After setting up your git repository:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit: Tree View Component"
-git branch -M main
-# git remote add origin <>
-git push -u origin main
-```
 
 ### Deployment Link
-
-After deploying to any platform, note your deployment URL:
-
-<!-- - Netlify: `https://your-app.netlify.app`
-- GitHub Pages: `https://username.github.io/repository` -->
+- Netlify: `https://your-app.netlify.app`
+- GitHub Pages: `https://github.com/Manjeetyadav29/angular-tree-view`
 
 ## 📝 Assignment Checklist
 
