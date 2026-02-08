@@ -1,0 +1,32 @@
+<div class="tree-view-container">
+  <div class="tree-view-header">
+    <h2>Tree View Component</h2>
+    <button class="add-root-btn" (click)="onAddRootNode()">
+      + Add Root Node
+    </button>
+  </div>
+
+  <div class="tree-view-content">
+    <div class="tree-nodes">
+      <app-tree-node *ngFor="let node of treeData$ | async" [node]="node" [level]="0"></app-tree-node>
+    </div>
+
+    <div class="tree-instructions">
+      <h3>Instructions:</h3>
+      <ul>
+        <li><strong>Expand/Collapse:</strong> Click the +/− button on nodes with children</li>
+        <li><strong>Add Child:</strong> Click the <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="16" />
+              <line x1="8" y1="12" x2="16" y2="12" />
+            </svg></span> button to add a child node</li>
+        <li><strong>Edit:</strong> Double-click on a node label to edit it</li>
+        <li><strong>Delete:</strong> Click the × button to remove a node</li>
+        <li><strong>Drag & Drop:</strong> Drag nodes to reorder or move them to different parents</li>
+        <li><strong>Lazy Loading:</strong> Children are loaded when you first expand a parent node</li>
+      </ul>
+    </div>
+  </div>
+</div>

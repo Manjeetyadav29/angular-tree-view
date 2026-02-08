@@ -1,0 +1,51 @@
+<div class="tree-node-container" [class.dragged-over]="draggedOver" [style.padding-left]="getIndentStyle()"
+  draggable="true" (dragstart)="onDragStart($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)">
+  <div class="tree-node" (dblclick)="onDoubleClick()">
+    <div class="node-content">
+      <!-- Circle Icon -->
+      <div class="node-icon" [class.has-children]="node.hasChildren">
+        {{ node.level }}
+      </div>
+
+      <!-- Label or Edit Input -->
+      <div class="node-label-container">
+        <input *ngIf="isEditing" type="text" class="node-edit-input" [(ngModel)]="editLabel" (blur)="onEditBlur()"
+          (keydown)="onEditKeydown($event)" autofocus />
+        <span *ngIf="!isEditing" class="node-label">{{ node.label }}</span>
+        <span *ngIf="node.isLoading" class="loading-indicator">Loading...</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="node-actions">
+        <!-- Expand/Collapse for nodes with children -->
+        <button *ngIf="node.hasChildren" class="action-btn expand-btn" (click)="onToggle($event)"
+          [title]="node.isExpanded ? 'Collapse' : 'Expand'">
+          {{ node.isExpanded ? '−' : '+' }}
+        </button>
+
+        <!-- Add Child Node -->
+        <button class="action-btn add-btn" (click)="onAdd($event)" title="Add child node">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+        </button>
+
+        <!-- Remove Node -->
+        <button class="action-btn remove-btn" (click)="onRemove($event)" title="Remove node">
+          <svg width="16" height="16" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recursively render children -->
+  <div *ngIf="node.isExpanded && node.children" class="tree-children">
+    <app-tree-node *ngFor="let child of node.children" [node]="child" [level]="level + 1"></app-tree-node>
+  </div>
+</div>
